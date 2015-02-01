@@ -33,6 +33,8 @@ app.use('/wall/*', express.static(__dirname + '/public/wall.html'));
 app.use('/rooms', express.static(__dirname + '/public/rooms.html'));
 app.use('/qrcode/*', express.static(__dirname + '/public/qrcode.html'));
 
+app.use('/test/*', express.static(__dirname + '/public/component/component.html'));
+
 // Chatroom
 
 // usernames which are currently connected to the chat

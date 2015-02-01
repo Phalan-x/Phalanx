@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Phalanx</title>
-  <link rel="stylesheet" href="../style.css">
-  <link rel="stylesheet" href="/component.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/component/component.css">
 </head>
 <body>
   <time id="time"></time>
@@ -13,6 +13,12 @@
     <li class="chat page">
       <div class="chatArea abp">
         <div class="messages container" id="messages-stage"></div>
+        <div id="control-resize-lr" class="button" style="float:none;position:absolute;right:0;bottom: -50px">
+          ↔ 
+        </div>
+        <div id="control-resize-tb" class="button" style="float:none;position:absolute;left:0;bottom: -50px">
+          ↕ 
+        </div>
       </div>
       <div class="input-wrap">
         <input class="inputMessage" placeholder="Type here..."/>
@@ -29,6 +35,6 @@
   <script src="/jquery-1.10.2.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/CommentCoreLibrary.js"></script>
-  <script src="/component.js"></script>
+  <script src="/component/component.js"></script>
 </body>
 </html>
