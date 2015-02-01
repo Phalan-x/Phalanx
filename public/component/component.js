@@ -115,7 +115,6 @@ $(function() {
         username: username,
         message: message
       });
-      console.log(message);
       // tell server to execute 'new message' and send along one parameter
       socket.emit('new message', message);
     }
@@ -253,12 +252,14 @@ $(function() {
       isDownLR = false;
     });
     $("#control-resize-lr").on("mousedown", function(e){
+      e.stopPropagation();
       sX = e.clientX;
       iX = $(".chatArea").outerWidth();
       iY = $(".chatArea").outerHeight();
       isDownLR = true;
     });
     $("#control-resize-tb").on("mousedown", function(e){
+      e.stopPropagation();
       sY = e.clientY;
       iX = $(".chatArea").outerWidth();
       iY = $(".chatArea").outerHeight();
@@ -267,7 +268,6 @@ $(function() {
     $(document).on("mousemove", function(e){
       if(isDownTB){
         var yDelta = e.clientY - sY;
-        console.log($(".chatArea").offset());
         $(".chatArea").height(iY + yDelta);
       }else if(isDownLR){
         var xDelta = e.clientX - sX;
