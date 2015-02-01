@@ -79,3 +79,48 @@
   font-family: "\5FAE\8F6F\96C5\9ED1";
   src:local('Microsoft YaHei');
 }
+
+.chatArea {
+  position: relative;
+  padding: 0 0 50px 0;
+  width: 400px;
+  height: 200px;
+  overflow: initial;
+ }
+
+.messages {
+  width: 100%;
+}
+
+.inputMessage {
+  position: static;
+  border: 10px solid #000;
+  height: 60px;
+  padding-left: 10px;
+  width: 100%;
+  padding-right: 50px;
+  vertical-align: middle;
+}
+
+#message-stage {
+  position: static;
+}
+
+.abp .container {
+  position: static;
+}
+
+.input-wrap {
+  position: absolute;
+  left: 0;
+  resize: horizontal;
+  overflow: hidden;
+  z-index: 100;
+  border: 2px solid black;
+ }
+
+.button {
+  height: 50px;
+  width: 80px;
+  background: yellow;
+}

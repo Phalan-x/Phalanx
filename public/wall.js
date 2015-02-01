@@ -32,7 +32,7 @@ $(function() {
       $currentInput = $inputMessage.focus();
 
       var parts = window.location.pathname.split('/')
-      if(parts.length >= 3 && parts[1] == 'danmu') {
+      if(parts.length >= 3 && parts[1] == 'wall') {
           socket.emit('in room', {room: parts[2], username: username});
       }
     }
@@ -51,7 +51,7 @@ $(function() {
         message: message
       });
       // tell server to execute 'new message' and send along one parameter
-      socket.emit('new message', {message:message, roomTime:playTime});
+      socket.emit('new message', {message:message, time:playTime});
     }
   }
 
@@ -84,14 +84,10 @@ $(function() {
         sendMessage();
       } else {
         setUsername();
-        // initCommentManager();
-        socket.emit('get messages');
+        initCommentManager();
       }
     }
   });
-    $('.submit').on('click', function() {
-        setUsername();
-    })
 
   // Focus input when clicking anywhere on login page
   $loginPage.click(function () {
@@ -152,7 +148,7 @@ $(function() {
 
   function fire(text,time) {
     if (!CM) return;
-    CM.insert({
+    CM.send({
       "mode":1,
         "text":text,
         "stime":time,
