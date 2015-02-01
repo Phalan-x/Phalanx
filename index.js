@@ -28,10 +28,12 @@ server.listen(port, function () {
 // Routing
 app.use(express.static(__dirname + '/public'));
 app.use('/room/*', express.static(__dirname + '/public/index.html'));
-app.use('/wall/*', express.static(__dirname + '/public/danmu.html'));
-app.use('/test/*', express.static(__dirname + '/public/component/component.html'));
+app.use('/danmu/*', express.static(__dirname + '/public/danmu.html'));
+app.use('/wall/*', express.static(__dirname + '/public/wall.html'));
 app.use('/rooms', express.static(__dirname + '/public/rooms.html'));
 app.use('/qrcode/*', express.static(__dirname + '/public/qrcode.html'));
+
+app.use('/test/*', express.static(__dirname + '/public/component/component.html'));
 
 // Chatroom
 
@@ -52,8 +54,10 @@ io.on('connection', function (socket) {
 
   /* room */
   socket.on('in room', function(data) { 
+    if(!data.room) data.room = 'default'
     socket.join(data.room);
     socket.room = data.room;
+    socket.username = data.username;
 
     Room.getOneByName(data.room).then(function(result) {
         socket.emit('show room', result)
@@ -91,7 +95,13 @@ io.on('connection', function (socket) {
     Room.getAll().then(function(result){
       socket.emit('show rooms', result);
     })
-  })
+  });
+
+  socket.on('get messages', function (data) {
+    Boom.getByRoom(socket.room).then(function(data){
+      socket.emit('messages loaded',data);
+    });
+  });
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
@@ -111,52 +121,7 @@ io.on('connection', function (socket) {
       roomTime: boom.roomTime,
       time: Date.parse(boom.time)
     });
-  });
 
-  // when the client emits 'add user', this listens and executes
-  socket.on('add user', function (username) {
-    // we store the username in the socket session for this client
-    socket.username = username;
-    // add the client's username to the global list
-    usernames[username] = username;
-    ++numUsers;
-    addedUser = true;
-    socket.emit('login', {
-      numUsers: numUsers
-    });
-    // echo globally (all clients) that a person has connected
-    shout('user joined', {
-      username: socket.username,
-      numUsers: numUsers
-    });
-  });
-
-  // when the client emits 'typing', we broadcast it to others
-  socket.on('typing', function () {
-    shout('typing', {
-      username: socket.username
-    });
-  });
-
-  // when the client emits 'stop typing', we broadcast it to others
-  socket.on('stop typing', function () {
-    shout('stop typing', {
-      username: socket.username
-    });
-  });
-
-  // when the user disconnects.. perform this
-  socket.on('disconnect', function () {
-    // remove the username from global usernames list
-    if (addedUser) {
-      delete usernames[socket.username];
-      --numUsers;
-
-      // echo globally that this client has left
-      shout('user left', {
-        username: socket.username,
-        numUsers: numUsers
-      });
-    }
+    log(socket.username + ' say ' + boom.content);
   });
 });
