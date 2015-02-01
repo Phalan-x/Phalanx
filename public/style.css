@@ -277,6 +277,23 @@ li.message.right .username {
   margin-top: -1px;
 }
 
+#room-info {
+  margin-top: 5px;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: rgb(95,95,95);
+}
+.qrcode {
+  display: inline-block;
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  background-size: 20px;
+  background-image: url('/static/img/qrcode.png');
+}
+
 /* 弹幕 */
 #time {
   position: absolute;

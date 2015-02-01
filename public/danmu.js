@@ -89,6 +89,9 @@ $(function() {
       }
     }
   });
+    $('.submit').on('click', function() {
+        setUsername();
+    })
 
   // Focus input when clicking anywhere on login page
   $loginPage.click(function () {

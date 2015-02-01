@@ -211,6 +211,7 @@ $(function() {
     var message = "欢迎来到聊天室";
     log(message);
 
-    $('#room-info').html(data.title + ',' + data.type + ',' + data.periodTime + '<a href="/qrcode/'+ data.title +'">二维码</a>')    
+  socket.on('show room', function(data){
+    $('#room-info').html(data.title + '<a href="/qrcode/'+ data.title +'" alt="二维码" class="qrcode"></a>')
   });
 });
