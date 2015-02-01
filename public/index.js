@@ -33,16 +33,11 @@ $(function() {
       $loginPage.off('click');
       $currentInput = $inputMessage.focus();
 
-      // Tell the server your username
-      socket.emit('add user', username);
-    }
-  }
-
-  function inRoom(){
       var parts = window.location.pathname.split('/')
       if(parts.length >= 3 && parts[1] == 'room') {
-          socket.emit('in room', {room: parts[2]});
+          socket.emit('in room', {room: parts[2], username: username});
       }
+    }
   }
 
   // Sends a chat message
@@ -178,7 +173,6 @@ $(function() {
         typing = false;
       } else {
         setUsername();
-        inRoom();
       }
     }
   });
@@ -186,6 +180,7 @@ $(function() {
   $('.submit').on('click', function() {
     setUsername();
   })
+
   $('#send-icon').on('click', function() {
     if (!username) return;
     sendMessage();
@@ -204,23 +199,18 @@ $(function() {
     $inputMessage.focus();
   });
 
-  // Socket events
-
-  // Whenever the server emits 'login', log the login message
-  socket.on('login', function (data) {
-    connected = true;
-    // Display the welcome message
-    logTime((new Date()).toTimeString().substring(0,5))
-    var message = "欢迎来到聊天室";
-    log(message);
-  });
-
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {
     addChatMessage(data);
   });
 
   socket.on('show room', function(data){
+    connected = true;
+    // Display the welcome message
+    logTime((new Date()).toTimeString().substring(0,5))
+    var message = "欢迎来到聊天室";
+    log(message);
+
     $('#room-info').html(data.title + ',' + data.type + ',' + data.periodTime + '<a href="/qrcode/'+ data.title +'">二维码</a>')    
   });
 });
