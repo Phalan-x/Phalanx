@@ -241,4 +241,49 @@ $(function() {
   });
 
   $('.input-wrap, .chatArea').dragmove();
+
+
+  function bindResize(){
+    var sX = 0, sY = 0;
+    var iX = 0, iY = 0;
+    var isDownTB = false;
+    var isDownLR = false;
+    $(document).on("dblclick", function(){
+      isDownTB = false;
+      isDownLR = false;
+    });
+    $("#control-resize-lr").on("mousedown", function(e){
+      sX = e.clientX;
+      iX = $(".chatArea").outerWidth();
+      iY = $(".chatArea").outerHeight();
+      isDownLR = true;
+    });
+    $("#control-resize-tb").on("mousedown", function(e){
+      sY = e.clientY;
+      iX = $(".chatArea").outerWidth();
+      iY = $(".chatArea").outerHeight();
+      isDownTB = true;
+    });
+    $(document).on("mousemove", function(e){
+      if(isDownTB){
+        var yDelta = e.clientY - sY;
+        console.log($(".chatArea").offset());
+        $(".chatArea").height(iY + yDelta);
+      }else if(isDownLR){
+        var xDelta = e.clientX - sX;
+        $(".chatArea").width(iX + xDelta);
+      }
+    });
+    $(document).on("mouseup", function(e){
+      if((isDownTB || isDownLR)){
+        CM.setBounds();
+        CM.setBounds();
+      }
+      isDownTB = false;
+      isDownLR = false;
+    });
+  }
+
+  bindResize();
+  
 });
