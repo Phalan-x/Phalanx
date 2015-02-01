@@ -1,0 +1,105 @@
+body {
+	margin: 0;
+}
+form {
+	overflow: hidden;
+	text-align: center;
+	width: 280px;
+	margin: 10px auto;
+	border: 1px solid #2fdda3;
+	border-radius: 5px;
+}
+.p-line {
+	width: 280px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 auto;
+	border-bottom: 1px solid #eee;
+}
+.p-line:first-of-type {
+	background: #ffffff;
+}
+.p-line:last-of-type {
+	background: #2fdda3;
+	border-bottom: none;
+}
+.p-line label {
+	display: inline-block;
+	color: #666;
+	width: 129px;
+	height: 40px;
+	line-height: 40px;
+	text-align: left;
+	vertical-align: top;
+}
+.p-line input {
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+	border: none;
+}
+form [type="submit"] {
+	color: #fff;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	font-size: 18px;
+	width: 250px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	margin-top: 7px;
+}
+.room-title {
+	width: 270px;
+	font-size: 18px;
+	color: #666;
+	border-left: 4px solid #2fdda3;
+	margin: 50px auto 0;
+	padding-left: 5px;
+}
+[name='title'] {
+	width: 260px;
+}
+[name="periodTime"] {
+	width: 220px;
+}
+table {
+	overflow: hidden;
+	text-align: center;
+	width: 280px;
+	margin: 10px auto;
+	border: 1px solid #2fdda3;
+	border-radius: 5px;
+	font-size: 14px;
+}
+table td {
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+	padding-left: 10px;
+	border-bottom: 1px dotted #eee;
+}
+table td a {
+	display: inline-block;
+	width: 220px;
+	height: 30px;
+	line-height: 30px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	color: #444;
+	font-size: 18px;
+	text-decoration: none;
+	vertical-align: middle;
+}
+table td a:hover {
+	color: #176e51;
+	text-decoration: underline;
+}
+.qrcode {
+	margin-left: 10px;
+	width: 20px;
+	height: 20px;
+	background-size: 20px;
+	background-image: url('/static/img/qrcode.png');
+}

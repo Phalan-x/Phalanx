@@ -221,6 +221,6 @@ $(function() {
   });
 
   socket.on('show room', function(data){
-    $('#room-info').html(data.title + ',' + data.type + ',' + data.periodTime + '<a href="/qrcode/'+ data.title +'">二维码</a>')    
+    $('#room-info').html(data.title + '<a href="/qrcode/'+ data.title +'" alt="二维码" class="qrcode"></a>')
   });
 });

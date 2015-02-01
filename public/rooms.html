@@ -4,23 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Phalanx Chatroom</title>
+  <link rel="stylesheet" href="/rooms.css">
 </head>
 <body>
+  <div class="room-title">
+    创建房间
+  </div>
   <form id="room-form">
-  <p>
-    <label>
-      <input name="type" type="radio" value="1" checked>
-      实时弹幕墙
-    </label>
-    <label>
-      <input name="type" type="radio" value="2">
-      反复吐槽之
-    </label>
-    </p>
-    <p><input name="title" placeholder="名称"></p>
-    <p style="display:none"><input name="periodTime" placeholder="时长"> 分钟</p>
-    <input type="submit" value="创建">
+    <div class="p-line">
+      <label>
+        <input name="type" type="radio" value="1" checked>
+        实时弹幕墙
+      </label>
+      <label>
+        <input name="type" type="radio" value="2">
+        反复吐槽之
+      </label>
+    </div>
+    <div class="p-line"><input name="title" placeholder="请输入房间名称"></div>
+    <div class="p-line" style="display:none"><input name="periodTime" placeholder="请输入时长"> 分钟</div>
+    <div class="p-line"><input type="submit" value="创建"></div>
   </form>
+  <div class="room-title">
+    房间列表
+  </div>
   <table id="rooms"></table>
 
   <script src="/jquery-1.10.2.min.js"></script>

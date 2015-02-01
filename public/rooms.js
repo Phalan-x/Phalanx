@@ -4,13 +4,13 @@ $(function() {
     socket.on('show rooms', function(data){
         $('#rooms').html('');
         $.each(data, function(i, r){ 
-            $('#rooms').append('<tr><td><a href="/room/' + r.title + '">' + r.title + '</a></td><td>[<a href="/qrcode/'+ r.title +'">二维码</a>]</td></tr>');
+            $('#rooms').append('<tr><td><a href="/room/' + r.title + '">' + r.title + '</a><a href="/qrcode/'+ r.title +'" alt="二维码" class="qrcode"></a></tr>');
         });
     });
 
     socket.on('created room', function(r){
         alert('恭喜，' + r.title + ' 创建成功！');
-        $('#rooms').prepend('<tr><td><a href="/room/' + r.title + '">' + r.title + '</a></td><td>[<a href="/qrcode/'+ r.title +'">二维码</a>]</td></tr>');
+        $('#rooms').prepend('<tr><td><a href="/room/' + r.title + '">' + r.title + '</a><a href="/qrcode/'+ r.title +'" alt="二维码" class="qrcode"></a></tr>');
     });
 
     socket.on('error msg', function(data){
