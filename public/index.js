@@ -204,14 +204,16 @@ $(function() {
     addChatMessage(data);
   });
 
-  socket.on('show room', function(data){
+  socket.on('show room', function(data) {
     connected = true;
     // Display the welcome message
-    logTime((new Date()).toTimeString().substring(0,5))
+    logTime((new Date()).toTimeString().substring(0, 5))
     var message = "欢迎来到聊天室";
     log(message);
+  });
 
   socket.on('show room', function(data){
     $('#room-info').html(data.title + '<a href="/qrcode/'+ data.title +'" alt="二维码" class="qrcode"></a>')
+
   });
 });
