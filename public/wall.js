@@ -153,7 +153,8 @@ $(function() {
         "text":text,
         "stime":time,
         "size":25,
-        "color":0xffffff
+        "color":0xffffff,
+        "dur":5000
     });
   }
   //end 弹幕
