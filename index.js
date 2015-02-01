@@ -28,7 +28,8 @@ server.listen(port, function () {
 // Routing
 app.use(express.static(__dirname + '/public'));
 app.use('/room/*', express.static(__dirname + '/public/index.html'));
-app.use('/wall/*', express.static(__dirname + '/public/danmu.html'));
+app.use('/danmu/*', express.static(__dirname + '/public/danmu.html'));
+app.use('/wall/*', express.static(__dirname + '/public/wall.html'));
 app.use('/rooms', express.static(__dirname + '/public/rooms.html'));
 app.use('/qrcode/*', express.static(__dirname + '/public/qrcode.html'));
 
@@ -90,7 +91,13 @@ io.on('connection', function (socket) {
     Room.getAll().then(function(result){
       socket.emit('show rooms', result);
     })
-  })
+  });
+
+  socket.on('get messages', function (data) {
+    Boom.getByRoom(socket.room).then(function(data){
+      socket.emit('messages loaded',data);
+    });
+  });
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
