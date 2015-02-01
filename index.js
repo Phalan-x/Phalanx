@@ -29,6 +29,7 @@ server.listen(port, function () {
 app.use(express.static(__dirname + '/public'));
 app.use('/room/*', express.static(__dirname + '/public/index.html'));
 app.use('/wall/*', express.static(__dirname + '/public/danmu.html'));
+app.use('/test/*', express.static(__dirname + '/public/component/component.html'));
 app.use('/rooms', express.static(__dirname + '/public/rooms.html'));
 app.use('/qrcode/*', express.static(__dirname + '/public/qrcode.html'));
 
