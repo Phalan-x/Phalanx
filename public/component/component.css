@@ -82,9 +82,9 @@
 
 .chatArea {
   position: relative;
-  padding: 0 0 50px 0;
   width: 400px;
   height: 200px;
+  padding: 0;
   overflow: initial;
  }
 
@@ -120,7 +120,19 @@
  }
 
 .button {
-  height: 50px;
-  width: 80px;
-  background: yellow;
+  padding: 10px 15px 12px 15px;
+  cursor: default;
+  background-color: #222;
+  cursor: pointer;
+  color: white;
+}
+
+.button:hover {
+  background-color: #555;
+  text-decoration: none;
+}
+#messages-stage {
+  background: none;
+  border: 1px solid #2fdda3;
+  border-radius: 5px;
 }
