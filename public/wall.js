@@ -31,16 +31,11 @@ $(function() {
       $loginPage.off('click');
       $currentInput = $inputMessage.focus();
 
-      // Tell the server your username
-      socket.emit('add user', username);
-    }
-  }
-
-  function inRoom(){
       var parts = window.location.pathname.split('/')
-      if(parts.length >= 3 && parts[1] == 'danmu') {
-          socket.emit('in room', {room: parts[2]});
+      if(parts.length >= 3 && parts[1] == 'wall') {
+          socket.emit('in room', {room: parts[2], username: username});
       }
+    }
   }
 
   // Sends a chat message
@@ -89,7 +84,6 @@ $(function() {
         sendMessage();
       } else {
         setUsername();
-        inRoom();
         initCommentManager();
       }
     }
@@ -167,7 +161,7 @@ $(function() {
   // Socket events
 
   // Whenever the server emits 'login', log the login message
-  socket.on('login', function (data) {
+  socket.on('show room', function (data) {
     connected = true;
     // Display the welcome message
     var message = "Welcome to Socket.IO Chat – ";
